@@ -10,18 +10,20 @@ public class Mt {
 	private boolean arrayIncrement;
 	private boolean arraySynchIncrement;
 	private boolean mutex;
+	private boolean reentrant;
 	
-	public Mt(int[] array, boolean increment, boolean arrayIncrement, boolean arraySynchIncrement, boolean mutex){
+	public Mt(int[] array, boolean increment, boolean arrayIncrement, boolean arraySynchIncrement, boolean mutex, boolean reentrant){
 		this.array = array;
 		this.increment = increment;
 		this.arrayIncrement = arrayIncrement;
 		this.arraySynchIncrement = arraySynchIncrement;
 		this.mutex = mutex;
+		this.reentrant = reentrant;
 	}
 	
 	private void process(IntArray intArray) throws InterruptedException {
-		Thread thread1 = new ArrayThread(intArray, increment, arrayIncrement, arraySynchIncrement, mutex);
-		Thread thread2 = new ArrayThread(intArray, increment, arrayIncrement, arraySynchIncrement, mutex);
+		Thread thread1 = new ArrayThread(intArray, increment, arrayIncrement, arraySynchIncrement, mutex, reentrant);
+		Thread thread2 = new ArrayThread(intArray, increment, arrayIncrement, arraySynchIncrement, mutex, reentrant);
 		thread1.start();
 		thread2.start();
 		try {
@@ -33,16 +35,6 @@ public class Mt {
 	}
 	
 	public void increment() {
-		IntArray intArray = new IntArray(array);
-		try{
-			process(intArray);
-		} catch(InterruptedException e){
-			e.printStackTrace();
-			System.err.println(e.getMessage());
-		}
-	}
-	
-	public void arrayIncrement() {
 		IntArray intArray = new IntArray(array);
 		try{
 			process(intArray);

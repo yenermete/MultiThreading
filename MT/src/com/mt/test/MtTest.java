@@ -14,7 +14,7 @@ public class MtTest extends TestCase {
 
 	@Test
 	public void testIncrement() {
-		Mt mt = new Mt(new int[MtUtil.ARRAY_LENGTH], true, false, false, false);
+		Mt mt = new Mt(new int[MtUtil.ARRAY_LENGTH], true, false, false, false, false);
 		mt.increment();
 		
 		testEquality(mt.getArray(), MtUtil.EXPECTED_RESULT);
@@ -22,7 +22,7 @@ public class MtTest extends TestCase {
 	
 	@Test
 	public void testArrayIncrement() {
-		Mt mt = new Mt(new int[MtUtil.ARRAY_LENGTH], false, true, false, false);
+		Mt mt = new Mt(new int[MtUtil.ARRAY_LENGTH], false, true, false, false, false);
 		mt.increment();
 		
 		testEquality(mt.getArray(), MtUtil.EXPECTED_RESULT);
@@ -30,7 +30,7 @@ public class MtTest extends TestCase {
 	
 	@Test
 	public void testArraySynchIncrement() {
-		Mt mt = new Mt(new int[MtUtil.ARRAY_LENGTH], false, false, true, false);
+		Mt mt = new Mt(new int[MtUtil.ARRAY_LENGTH], false, false, true, false, false);
 		mt.increment();
 		
 		testEquality(mt.getArray(), MtUtil.EXPECTED_RESULT);
@@ -38,7 +38,15 @@ public class MtTest extends TestCase {
 	
 	@Test
 	public void testMutexIncrement() {
-		Mt mt = new Mt(new int[MtUtil.ARRAY_LENGTH], false, false, false, true);
+		Mt mt = new Mt(new int[MtUtil.ARRAY_LENGTH], false, false, false, true, false);
+		mt.increment();
+		
+		testEquality(mt.getArray(), MtUtil.EXPECTED_RESULT);
+	}
+	
+	@Test
+	public void testReentrantIncrement() {
+		Mt mt = new Mt(new int[MtUtil.ARRAY_LENGTH], false, false, false, false, true);
 		mt.increment();
 		
 		testEquality(mt.getArray(), MtUtil.EXPECTED_RESULT);
