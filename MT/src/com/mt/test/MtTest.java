@@ -13,40 +13,40 @@ import com.mt.util.MtUtil;
 public class MtTest extends TestCase {
 
 	@Test
-	public void testIncrement() {
-		Mt mt = new Mt(new int[MtUtil.ARRAY_LENGTH], true, false, false, false, false);
+	public void testSynchronizedThis() {
+		Mt mt = new Mt(new int[MtUtil.ARRAY_LENGTH], MtUtil.INCREMENT_WITH_SYNCHRONIZED_THIS_PARAMETER);
 		mt.increment();
 		
 		testEquality(mt.getArray(), MtUtil.EXPECTED_RESULT);
 	}
 	
 	@Test
-	public void testArrayIncrement() {
-		Mt mt = new Mt(new int[MtUtil.ARRAY_LENGTH], false, true, false, false, false);
+	public void testSynchronizedMethod() {
+		Mt mt = new Mt(new int[MtUtil.ARRAY_LENGTH], MtUtil.INCREMENT_WITH_SYNCHRONIZED_METHOD);
 		mt.increment();
 		
 		testEquality(mt.getArray(), MtUtil.EXPECTED_RESULT);
 	}
 	
 	@Test
-	public void testArraySynchIncrement() {
-		Mt mt = new Mt(new int[MtUtil.ARRAY_LENGTH], false, false, true, false, false);
+	public void testSynchronizedArray() {
+		Mt mt = new Mt(new int[MtUtil.ARRAY_LENGTH], MtUtil.INCREMENT_WITH_SYNCHRONIZED_ARRAY_PARAMETER);
 		mt.increment();
 		
 		testEquality(mt.getArray(), MtUtil.EXPECTED_RESULT);
 	}
 	
 	@Test
-	public void testMutexIncrement() {
-		Mt mt = new Mt(new int[MtUtil.ARRAY_LENGTH], false, false, false, true, false);
+	public void testSynchronizedMutex() {
+		Mt mt = new Mt(new int[MtUtil.ARRAY_LENGTH], MtUtil.INCREMENT_WITH_SYNCHRONIZED_MUTEX_PARAMETER);
 		mt.increment();
 		
 		testEquality(mt.getArray(), MtUtil.EXPECTED_RESULT);
 	}
 	
 	@Test
-	public void testReentrantIncrement() {
-		Mt mt = new Mt(new int[MtUtil.ARRAY_LENGTH], false, false, false, false, true);
+	public void testReentrantLock() {
+		Mt mt = new Mt(new int[MtUtil.ARRAY_LENGTH], MtUtil.INCREMENT_WITH_REENTRANT_LOCK);
 		mt.increment();
 		
 		testEquality(mt.getArray(), MtUtil.EXPECTED_RESULT);

@@ -6,24 +6,16 @@ import com.mt.threads.ArrayThread;
 public class Mt {
 	
 	private int[] array;
-	private boolean increment;
-	private boolean arrayIncrement;
-	private boolean arraySynchIncrement;
-	private boolean mutex;
-	private boolean reentrant;
+	private final int lockType;
 	
-	public Mt(int[] array, boolean increment, boolean arrayIncrement, boolean arraySynchIncrement, boolean mutex, boolean reentrant){
+	public Mt(int[] array, int lockType){
 		this.array = array;
-		this.increment = increment;
-		this.arrayIncrement = arrayIncrement;
-		this.arraySynchIncrement = arraySynchIncrement;
-		this.mutex = mutex;
-		this.reentrant = reentrant;
+		this.lockType = lockType;
 	}
 	
 	private void process(IntArray intArray) throws InterruptedException {
-		Thread thread1 = new ArrayThread(intArray, increment, arrayIncrement, arraySynchIncrement, mutex, reentrant);
-		Thread thread2 = new ArrayThread(intArray, increment, arrayIncrement, arraySynchIncrement, mutex, reentrant);
+		Thread thread1 = new ArrayThread(intArray, lockType);
+		Thread thread2 = new ArrayThread(intArray, lockType);
 		thread1.start();
 		thread2.start();
 		try {
